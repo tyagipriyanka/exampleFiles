@@ -1,0 +1,105 @@
+//browser.pause();
+	/*browser.ignoreSynchronization=true;
+	browser.sleep(10000);*/
+		
+	
+describe("AngularJS homepage", function() {
+    it('Browse to BLUBOX website', function() {
+      browser.get('http://blubox.shoppinpal.com/seller/sell/products');
+    });
+ 
+    it("Browse to Gallery Images Module", function() {
+	    browser.get('http://blubox.shoppinpal.com/seller/sell/gallery/images');
+	    element(by.model('login.username')).sendKeys('9876543212');
+	    var passrd = element(by.model('login.password')).sendKeys('priyanka');
+	    passrd.sendKeys(protractor.Key.ENTER);
+	    element(by.css('a[href="/seller/sell/gallery"]')).click();
+	    expect(browser.getCurrentUrl()).toEqual('http://blubox.shoppinpal.com/seller/sell/gallery/images');
+    });
+ 
+
+    it('Should create catalog by selecting images', function(){
+        var selectOption=element.all(by.repeater('image in galleryImagesTab.images'));
+        browser.actions().mouseMove(selectOption).perform();
+        expect(selectOption.length).toEqual('24');
+        
+        //Select 3 images
+        for(var i=0;i<3;++i){
+            var selectImage=element(by.css('label[for="image-[i]"]'));
+            expect(selectImage.isDisplayed()).toBe(true);
+            selectImage.click();
+        }
+        
+        //Create CATALOG
+        element(by.linkText('Create catalog')).click();
+        //element(by.partialLinkText('Create catalog')).click();
+        
+        //Assert Catalog form opens up
+        var catalogForm= element(by.css('form[name="quickCatalogForm"]'));
+        expect(catalogForm.isDisplayed()).toBe(true);
+        console.log('Catalog form is being displayed');
+        
+    });
+    
+    it('Should open up the CATALOG form and click on Category', function(){
+       
+       // Find main Category element
+       var category = element(by.css('div[id="autocompleteForm-category"]'));
+       //var category = element(by.css('div[name="searchAutocomplete"]'));
+       expect(category.isDisplayed()).toBe(true);
+       console.log('Catalog form is being displayed');
+       
+       // Opens Sub-Category element
+       var subCategory = element(by.css('input[id="autocomplete-category"]'));
+       //var subCategory = element(by.css('input[name="acInputField-category"]'));
+       expect(subCategory.isDisplayed()).toBe(true);
+       console.log('Sub-Catalog form is being displayed');
+       subCategory.click();
+       
+       // Assert Sub-Category element
+       var dropDown = element(by.css('ul[class="collection dropdown-ul"]')); 
+       expect(dropDown.isDisplayed()).toBe(true);
+       console.log('Sub-Catalog form is being displayed');
+       dropDown.click();
+       
+    });
+    
+    it('Should select option from sub-category', function(){
+        
+        //Click on Kid's wear
+        var categoryList= element.all(by.css('li[ng-click="ac.selectItem(item)"]'));
+        expect(categoryList.length).toEqual('3');
+        var kidsWear, womensWear, mensWear;
+      
+      //work on it!!!
+        for(var i=0;i<categoryList.length;++i){
+           if(value === 'Kids wear'){
+                expect(categoryList.get(0).getText()).toContain('Kids wear');
+                console.log(categoryList.get(0).getText());
+                kidsWear = categoryList.get(0); //Kids wear
+           }
+           else if(value === 'Womens wear'){
+                expect(categoryList.get(1).getText()).toContain('Women\'s');
+                console.log(categoryList.get(1).getText());
+                womensWear = categoryList.get(1); //Women's
+           }
+                
+           else{
+                expect(categoryList.get(2).getText()).toContain('Men\'s Apparel');
+                console.log(categoryList.get(2).getText());
+                mensWear = categoryList.get(2); //Men's Apparel
+           }
+                
+        }
+        
+        
+        kidsWear = categoryList.get(0);
+        expect(kidsLink.getText()).toContain('Kids wear');
+        console.log('Found Kids wear link');
+        kidsLink.click();
+        
+    });
+
+    
+        
+});
