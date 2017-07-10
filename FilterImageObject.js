@@ -50,7 +50,7 @@ var FilterPageObject = function(){
 	this.clickUnusedImage = function(){
 	//Click on Unused Image
         var UnusedImage= element(by.css('label[for="new"]'));       //Instead of looping
-        console.log(UnusedImage);
+//         console.log(UnusedImage);
 		UnusedImage.click();
 	};
 	
