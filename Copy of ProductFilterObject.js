@@ -22,7 +22,7 @@ var FilterPageObject = function(){
       //Display Header text
       filterSlider.getText().then(function(text){
           expect(text).toContain("FILTER BY");
-          console.log('Filter header text is equal to ', text);
+//           console.log('Filter header text is equal to ', text);
           });
              
       //Try to click on it
