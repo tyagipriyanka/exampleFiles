@@ -57,7 +57,7 @@ var FilterPageObject = function(){
 	this.clickApply = function(){
 		//Click on APPLY button
         element(by.css('div[class="col s6 apply"]')).click();
-        console.log('Applying filter for Unused Image');
+//         console.log('Applying filter for Unused Image');
     };
 	
 };
