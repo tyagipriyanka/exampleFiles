@@ -35,7 +35,7 @@ var FilterPageObject = function(){
       element(by.css('input[dp-model="galleryFilter.filterData.endDate"]')).click();
 	  element.all(by.css('button[type="button"]')).getText().then(function(text){
 		  text.toContain('Today');
-		  console.log(text);
+// 		  console.log(text);
 	  });
 	  var dateElem= element.all(by.css('div[class="picker__footer"]')).$('button[class="btn-flat picker__today"]'); //should work
 	  
